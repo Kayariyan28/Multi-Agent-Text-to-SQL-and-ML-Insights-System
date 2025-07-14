@@ -1,61 +1,31 @@
-# Multi-Agent-Text-to-SQL-and-ML-Insights-System
-This GitHub repository organizes the multi-agent system built with LangGraph for advanced text-to-SQL.
-# Multi-Agent Text-to-SQL and ML Insights System
+# Multi-Agent Text-to-SQL and ML Insights System (Production-Grade)
 
 ## Overview
-This repository implements a multi-agent system using LangGraph for converting natural language business questions into advanced SQL queries or ML tasks on BigQuery datasets. It supports RAG for schema awareness and executes via BigQuery or SparkML for insights. Agents are specialized:
-- Planner (OpenAI o1-preview): Determines task type (SQL/ML) and creates plans.
-- Coder (Gemini 1.5 Pro): Generates SQL or PySpark code.
-- Reviewer (xAI Grok): Validates and refines code.
-- Analyst (Claude 3.5 Sonnet): Generates McKinsey-level insights.
-
-Built for detailed analysis, e.g., sales trends or predictive modeling.
+Enhanced for industrial use with MLOps, security, and scalability. Uses LangGraph for multi-agent workflows, integrated with BigQuery/SparkML on GCP.
 
 ## Setup
-1. Clone the repo: `git clone https://github.com/your-username/multi-agent-insights.git`
-2. Install dependencies: `pip install -r requirements.txt`
-3. Set up Spark (for ML tasks):
-   - Download Spark 3.5.1: https://spark.apache.org/downloads.html
-   - Set environment variables: `export SPARK_HOME=/path/to/spark` and `export JAVA_HOME=/path/to/java`
-   - Install BigQuery connector JAR if needed.
-4. Copy `.env.example` to `.env` and fill in:
-   - GOOGLE_API_KEY=your-key
-   - OPENAI_API_KEY=your-key
-   - ANTHROPIC_API_KEY=your-key
-   - XAI_API_KEY=your-key
-   - GOOGLE_CLOUD_PROJECT=your-project-id
-   - BQ_DATASET=your-dataset
-   - BQ_TABLE=your-table
-   - LOCATION=US
-5. Authenticate with GCP: `gcloud auth application-default login`
+1. Clone: `git clone https://github.com/your-username/multi-agent-insights.git`
+2. Install: `pip install -r requirements.txt` (prod) and `pip install -r dev-requirements.txt` (dev)
+3. Secrets: Use GCP Secret Manager or Vault; set via .env.
+4. Monitoring: Set LANGCHAIN_API_KEY for LangSmith.
+5. Deploy: `docker build -t multi-agent-insights .` then use k8s/ for GCP GKE.
+6. CI/CD: Configured via GitHub Actions; triggers on push/PR/merge.
 
-## Usage
-Run from CLI: `python main.py --question "Your business question here"`
-Or use notebooks/demo.ipynb for interactive examples.
+## Security Best Practices
+- Prompt Injection: Secondary LLM guard .
+- Access: GCP IAM RBAC .
+- Compliance: OWASP LLM mitigations .
+
+## MLOps
+- CI/CD: GitHub Actions for test/build/deploy .
+- Monitoring: LangSmith for LLMs , Prometheus for metrics .
+- Retraining: Scheduled via Airflow/Vertex AI .
+
+## Architecture Diagram
+(See docs/_static/architecture.puml for PlantUML source)
 
 ## Contributing
-Fork and PR. Issues welcome.
+Follow guidelines in CONTRIBUTING.md (added: code reviews, security scans).
 
 ## License
 MIT
-MIT License
-
-Copyright (c) 2025 [Karan Chandra Dey]
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
