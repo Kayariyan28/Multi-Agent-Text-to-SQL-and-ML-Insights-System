@@ -1,0 +1,18 @@
+name: CD
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build Docker
+        run: docker build -t gcr.io/${{ secrets.GCP_PROJECT }}/multi-agent-insights:latest .
+      - name: Push to GCR
+        uses: google-github-actions/auth@v1
+        with: { credentials_json: '${{ secrets.GCP_SA_KEY }}' }
+      - name: Deploy to GKE
+        run: kubectl apply -f k8s/
