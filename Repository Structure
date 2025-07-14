@@ -1,14 +1,38 @@
 multi-agent-insights/
-├── README.md               # Project overview, setup, and usage instructions
+├── README.md               # Detailed overview, setup, usage, security, and MLOps guidelines
 ├── LICENSE                 # MIT License
-├── requirements.txt        # Python dependencies
-├── .gitignore              # Standard Python ignores (e.g., __pycache__, .env)
-├── .env.example            # Template for environment variables (API keys, GCP project)
-├── src/                    # Core Python modules
+├── requirements.txt        # Python dependencies (updated with testing/monitoring libs)
+├── dev-requirements.txt    # Dev/test dependencies (pytest, sphinx, etc.)
+├── .gitignore              # Extended ignores (e.g., logs, models, vault)
+├── .env.example            # Updated with secrets, LangSmith API, etc.
+├── Dockerfile              # For containerizing the app
+├── docker-compose.yml      # Local dev setup with Prometheus/Grafana/ELK
+├── k8s/                    # Kubernetes manifests for deployment
+│   ├── deployment.yaml
+│   └── service.yaml
+├── .github/                # CI/CD workflows
+│   └── workflows/
+│       ├── ci.yml          # Test/lint on PR/push
+│       ├── cd.yml          # Deploy to GCP on merge
+│       └── mlops.yml       # Retrain/deploy ML models
+├── src/                    # Core Python modules (enhanced with async, retries)
 │   ├── __init__.py
-│   ├── agents.py           # Agent definitions (planning, generation, reviewing, analysis)
-│   ├── utils.py            # Helper functions (schema retrieval, query/code execution)
-│   └── graph.py            # Graph building, routers, and execution nodes
-├── main.py                 # Entry point for running analysis
-└── notebooks/              # Jupyter notebooks for demos
-    └── demo.ipynb          # Example usage with business questions
+│   ├── agents.py           # Agents with security guards, async support
+│   ├── utils.py            # Helpers with validation, drift detection
+│   ├── graph.py            # Graph with monitoring hooks
+│   ├── security.py         # Prompt injection guards, RBAC
+│   └── monitoring.py       # LangSmith/Prometheus integrations
+├── tests/                  # Comprehensive tests
+│   ├── unit/               # Agent/graph unit tests
+│   ├── integration/        # Workflow integration tests
+│   └── e2e/                # End-to-end with mock data
+├── docs/                   # Sphinx documentation
+│   ├── conf.py
+│   ├── index.rst
+│   └── _static/            # Architecture diagrams
+├── configs/                # Configs for monitoring, secrets
+│   ├── prometheus.yml
+│   └── langsmith.yaml
+├── main.py                 # Entry point (updated for production flags)
+└── notebooks/              # Demos (updated with production examples)
+    └── demo.ipynb          # Interactive usage
