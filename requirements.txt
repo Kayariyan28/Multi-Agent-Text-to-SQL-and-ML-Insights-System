@@ -1,0 +1,13 @@
+langchain
+langchain_google_genai
+langgraph
+google-cloud-aiplatform
+pandas
+db-dtypes
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+langchain-openai
+langchain-anthropic
+findspark
+pyspark
