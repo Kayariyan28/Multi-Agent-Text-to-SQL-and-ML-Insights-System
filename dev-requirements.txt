@@ -1,0 +1,5 @@
+pytest
+pytest-asyncio
+sphinx
+plantuml  # For diagrams
+black  # Linting
