@@ -1,0 +1,8 @@
+import pytest
+from src.agents import planning_agent
+
+@pytest.mark.asyncio
+async def test_planning_agent():
+    state = {"question": "test", "schema": "test"}
+    result = await planning_agent(state)
+    assert "plan" in result
