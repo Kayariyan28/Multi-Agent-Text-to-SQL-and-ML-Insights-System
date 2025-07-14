@@ -22,7 +22,7 @@ Enhanced for industrial use with MLOps, security, and scalability. Uses LangGrap
 - Retraining: Scheduled via Airflow/Vertex AI .
 
 ## Architecture Diagram
-(See docs/_static/architecture.puml for PlantUML source)
+system.png
 
 ## Contributing
 Follow guidelines in CONTRIBUTING.md (added: code reviews, security scans).
