@@ -1,0 +1,16 @@
+name: MLOps Retrain
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'  # Weekly
+
+jobs:
+  retrain:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Auth GCP
+        uses: google-github-actions/auth@v1
+        with: { credentials_json: '${{ secrets.GCP_SA_KEY }}' }
+      - name: Submit Vertex AI Job
+        run: gcloud ai custom-jobs create --region=us-central1 --display-name=retrain-ml --config=vertex-config.yaml
