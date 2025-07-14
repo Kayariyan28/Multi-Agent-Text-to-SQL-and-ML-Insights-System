@@ -1,0 +1,17 @@
+import asyncio
+import tenacity
+from langsmith import traceable  # Monitoring
+
+# Add async to agents
+async def planning_agent(state: AgentState) -> AgentState:
+    # ... (wrap chain.invoke in async)
+    @traceable  # LangSmith tracing
+    async def invoke_chain(...):
+        ...
+
+# Security guard for prompts
+from src.security import prompt_guard
+
+def sql_generation_agent(state: AgentState) -> AgentState:
+    guarded_plan = prompt_guard(state['plan'])  # Check for injection
+    # ...
