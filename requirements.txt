@@ -11,3 +11,11 @@ langchain-openai
 langchain-anthropic
 findspark
 pyspark
+tenacity  # For retries
+asyncio
+langsmith  # Monitoring
+prometheus-client
+elasticsearch  # ELK logging
+evidently  # Drift detection
+feast  # Feature store
+promptfoo  # LLM testing
